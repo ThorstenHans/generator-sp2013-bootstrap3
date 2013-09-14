@@ -1,0 +1,21 @@
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+#header, #footer, #page-layout {
+  border: 3px solid black;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+  margin: 0 0 20px 0;
+
+  color: white;
+  background: rgb(0, 114, 198);
+}
+
+#page-layout {
+  color: black;
+  background: rgba(239, 239, 239, 0.780392);
+}

@@ -1,0 +1,51 @@
+{
+  "name": "generator-sp2013-bootstrap3",
+  "version": "0.9.1",
+  "description": "Yeoman generator for scaffolding out a SharePoint 2013 HTML Master & Page Layouts project using Bootstrap 3.0",
+  "keywords": [
+    "yeoman-generator",
+    "sharepoint",
+    "sharepoint 2013",
+    "sp2013",
+    "front-end",
+    "HTML Master",
+    "HTML Page Layout",
+    "WebDavDeployment",
+    "Bootstrap3"
+  ],
+  "homepage": "https://github.com/ThorstenHans/generator-sp2013-bootstrap3",
+  "bugs": "https://github.com/ThorstenHans/generator-sp2013-bootstrap3/issues",
+  "author": "ThorstenHans",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ThorstenHans/generator-sp2013-bootstrap3.git"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.13.4",
+    "cheerio": "~0.12.2",
+    "underscore.string": "~2.3.3",
+    "nconf": "~0.6.7"
+  },
+  "peerDependencies": {
+    "generator-mocha": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "underscore.string": "~2.3.3",
+    "cheerio": "~0.12.2",
+    "yeoman-generator": "~0.13.4",
+    "nconf": "~0.6.7"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "BSD"
+    }
+  ]
+}

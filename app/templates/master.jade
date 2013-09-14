@@ -1,0 +1,65 @@
+!!! 5
+html
+  // SPM: <%%@Register Tagprefix="PublishingControls" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+  // SPM: <%%@Register Tagprefix="WebControls" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+  head
+    // MS: <SharePoint:SPShortcutIcon IconUrl="/_catalogs/masterpage/<%= masterSlug %>/images/favicon.ico" runat="server">
+    // PS: favicon
+    link(rel='shortcut icon', href=imagePath+'/favicon.ico')
+    // PE: favicon
+    // ME: </SharePoint:SPShortcutIcon>
+
+    // build:js(app) <%= masterSlug %>/scripts/vendor/modernizr.js
+        <script src="bower_components/modernizr/modernizr.js"></script>
+    // endbuild
+    include ../bower_components/sp2013-css/_sp2013-css
+    link(href=stylePath+'/main.css', type='text/css', rel='stylesheet', ms-design-css-conversion="no")
+  body
+    #s4-workspace
+      #s4-bodyContainer<%= compassBootstrap ? ": .container" : "" %>
+        .row
+          .col-md-12
+            .page-header
+              img(src='http://baconmockup.com/1140/300', alt='Page Header')
+        .row
+          .col-md-12
+            // CS: Start PlaceHolderMain Snippet
+            // MS: <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
+            block content
+            // MS: <PublishingControls:EditModePanel runat="server">
+            .edit-mode-panel
+              h2 Edit Mode Panel
+              .inner
+                block edit-mode-panel
+            // PS:
+            style(type='text/css')
+              .edit-mode-panel {
+                display: none;
+              }
+            // PE:
+            // ME: </PublishingControls:EditModePanel>
+            // ME: </asp:ContentPlaceHolder>
+            // CE: End PlaceHolderMain Snippet
+        .row
+          .col-md-12
+            .footer
+              p.text-muted Powered by
+                a(href='http://www.expertsinside.com', target='_blank') Experts Inside
+
+    // Change UA-XXXXX-X to your Google Analytics Id
+    // MS: <script type='text/javascript'>
+    | <!--
+    | var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    | (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    | g.src='//www.google-analytics.com/ga.js';
+    | s.parentNode.insertBefore(g,s)}(document,'script'));
+    | -->
+    // ME: </script>
+
+    // build:js({app,.tmp}) <%= masterSlug %>/scripts/main.js
+    // JS File
+    script(src='bower_components/jquery/jquery.js')
+    script(src='scripts/main.js')
+    // Coffee File
+    script(src=scriptPath+'/hello.js')
+    // endbuild
