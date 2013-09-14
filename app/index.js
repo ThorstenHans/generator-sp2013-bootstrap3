@@ -119,6 +119,7 @@ AppGenerator.prototype.bootstrapImg = function bootstrapImg() {
     this.copy('glyphicons-halflings.png', 'app/images/glyphicons-halflings.png');
     this.copy('glyphicons-halflings-white.png', 'app/images/glyphicons-halflings-white.png');
   }
+  this.copy('ei_logo.png', 'app/images/ei_logo.png');
 };
 
 AppGenerator.prototype.bootstrapJs = function bootstrapJs() {

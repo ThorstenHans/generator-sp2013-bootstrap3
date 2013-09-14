@@ -19,8 +19,24 @@ html
       #s4-bodyContainer<%= compassBootstrap ? ": .container" : "" %>
         .row
           .col-md-12
+            img(src='images/ei_logo.png', class='pull-right', alt='Experts Inside')
+        .row
+          .col-md-12
+            ul.nav.nav-pills
+              li.active
+                a(href='#') Experts Inside
+              li
+                a(href='#') Services
+              li
+                a(href='#') Products
+              li
+                a(href='#') Team
+              li
+                a(href='#') Contact
+        .row
+          .col-md-12
             .page-header
-              img(src='http://baconmockup.com/1140/300', alt='Page Header')
+              img(src='http://placehold.it/1140x300', alt='Page Header')
         .row
           .col-md-12
             // CS: Start PlaceHolderMain Snippet
@@ -43,7 +59,7 @@ html
         .row
           .col-md-12
             .footer
-              p.text-muted Powered by
+              p.text-muted Powered by&nbsp;
                 a(href='http://www.expertsinside.com', target='_blank') Experts Inside
 
     // Change UA-XXXXX-X to your Google Analytics Id
