@@ -25,20 +25,20 @@
     "test": "mocha --reporter spec"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.4",
-    "cheerio": "~0.12.2",
-    "underscore.string": "~2.3.3",
-    "nconf": "~0.6.7"
+    "yeoman-generator": "latest",
+    "cheerio": "latest",
+    "underscore.string": "latest",
+    "nconf": "latest"
   },
   "peerDependencies": {
-    "generator-mocha": "*"
+    "generator-mocha": "latest"
   },
   "devDependencies": {
-    "mocha": "*",
-    "underscore.string": "~2.3.3",
-    "cheerio": "~0.12.2",
-    "yeoman-generator": "~0.13.4",
-    "nconf": "~0.6.7"
+    "mocha": "latest",
+    "underscore.string": "latest",
+    "cheerio": "latest",
+    "yeoman-generator": "latest",
+    "nconf": "latest"
   },
   "engines": {
     "node": ">=0.8.0"

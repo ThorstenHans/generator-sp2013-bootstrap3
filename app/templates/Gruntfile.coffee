@@ -49,12 +49,12 @@ module.exports = (grunt) ->
         tasks: ['coffee:test']
       compass:
         files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}']
-        tasks: ['compass:server'<% if (autoprefixer) { %>, 'autoprefixer' < % } % > ]
-       < % if (autoprefixer) { % >
+        tasks: ['compass:server'<% if (autoprefixer) { %>, 'autoprefixer' <% } %> ]
+       <% if (autoprefixer) { %>
       styles:
         files: ['<%%= yeoman.app %>/styles/{,*/}*.css']
         tasks: ['copy:styles', 'autoprefixer']
-       < % } % >
+       <% } %>
       jade:
         files: ['app/jade/{,*/}*.jade']
         tasks: ['jade']
@@ -100,19 +100,18 @@ module.exports = (grunt) ->
         'test/spec/{,*/}*.js'
       ]
 
-     < % if (testFramework == == 'mocha') { % >
+     <% if (testFramework === 'mocha') { %>
     mocha:
       all:
         options:
           run: true
           urls: ['http://localhost:<%%= connect.options.port %>/index.html']
-     < % } else if (testFramework == == 'jasmin') { % >
+     <% } else if (testFramework === 'jasmin') { %>
     jasmine:
       all:
         options:
           specs: 'test/spec/{,*/}*.js'
-     < % } % >
-
+     <% } %>
     preview:
       html:
         files: [
@@ -180,7 +179,7 @@ module.exports = (grunt) ->
         options:
           debugInfo: true
 
-     < % if (autoprefixer) { % >
+     <% if (autoprefixer) { %>
     autoprefixer:
       options:
         browsers: ['last 1 version']
@@ -191,7 +190,7 @@ module.exports = (grunt) ->
           src: '{,*/}*.css'
           dest: '<%%= yeoman.tmpMaster %>/styles/'
         ]
-     < % } % >
+     <% } %>
 
     # Minify assets
 
@@ -326,15 +325,15 @@ module.exports = (grunt) ->
           dest: '<%%= yeoman.distMaster %>/fonts',
           src: '{,*/}*.*' # all fonts
         ]
-       < % if (autoprefixer) { % >
+       <% if (autoprefixer) { %>
       styles:
         expand: true
         dot: true
         cwd: '<%%= yeoman.app %>/styles'
         dest: '<%%= yeoman.tmpMaster %>/styles/'
         src: '{,*/}*.css'
-       < % } % >
-       < % if (webDavProperty) { % >
+       <% } %>
+       <% if (webDavProperty) { %>
       deploy:
         files: [
           expand: true
@@ -343,43 +342,43 @@ module.exports = (grunt) ->
           dest: '<%%= yeoman.targetWebDav %>'
           src: ['*.html', '<%%= yeoman.master %>/**/*.*']
         ]
-       < % } % >
+       <% } %>
     concurrent:
       server: [
         'jade'
         'compass:server'
         'coffee:dist'
-         < % if (autoprefixer) { % >
+         <% if (autoprefixer) { %>
         'copy:styles'
         'autoprefixer'
-         < % } % >
+         <% } %>
       ]
       test: [
         'coffee'
-         < % if (autoprefixer) { % >
+         <% if (autoprefixer) { %>
         'copy:styles'
         'autoprefixer'
-         < % } % >
+         <% } %>
       ]
       dist: [
         'coffee'
         'compass'
-         < % if (autoprefixer) { % >
+         <% if (autoprefixer) { %>
         'copy:styles'
-         < % } % >
+         <% } %>
         'imagemin'
         'svgmin'
         'htmlmin'
       ]
 
     grunt.registerTask 'server', (target) ->
-      return grunt.task.run ['build', 'preview', 'connect:dist:keepalive'] if target == 'dist'
+      return grunt.task.run ['build', 'preview', 'connect:dist:keepalive'] if target === 'dist'
       grunt.task.run [
         'clean:server'
         'concurrent:server'
-         < % if (autoprefixer) { % >
+         <% if (autoprefixer) { %>
         'autoprefixer'
-         < % } % >
+         <% } %>
         'connect:livereload'
         'preview'
         'watch'
@@ -388,15 +387,15 @@ module.exports = (grunt) ->
     grunt.registerTask 'test', [
       'clean:server'
       'concurrent:test'
-       < % if (autoprefixer) { % >
+       <% if (autoprefixer) { %>
       'autoprefixer'
-       < % } % >
+       <% } %>
       'connect:test'
-       < % if (testFramework == == 'mocha') { % >
+       <% if (testFramework === 'mocha') { %>
       'mocha'
-       < % } else if (testFramework == == 'jasmine') { % >
+       <% } else if (testFramework === 'jasmine') { %>
       'jasmine'
-       < % } % >
+       <% } %>
     ]
 
     grunt.registerTask 'build', [
@@ -404,12 +403,12 @@ module.exports = (grunt) ->
       'jade'
       'useminPrepare'
       'concurrent:dist'
-       < % if (autoprefixer) { % >
+       <% if (autoprefixer) { %>
       'autoprefixer'
-       < % } % >
-       < % if (includeRequireJS) { % >
+       <% } %>
+       <% if (includeRequireJS) { %>
       'requirejs'
-       < % } % >
+       <% } %>
       'cssmin'
       'concat'
       'uglify'
@@ -423,9 +422,9 @@ module.exports = (grunt) ->
       'test'
       'build'
     ]
-     < % if (webDavProperty) { % >
+     <% if (webDavProperty) { %>
     grunt.registerTask 'deploy', [
       'default'
       'copy:deploy'
     ]
-     < % } % >
+     <% } %>

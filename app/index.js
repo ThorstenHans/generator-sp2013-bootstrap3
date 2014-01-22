@@ -48,12 +48,6 @@ AppGenerator.prototype.askFor = function askFor() {
     message: 'Would you like to include Twitter Bootstrap for Sass?',
     default: true
   },
-  // {
-  //   type: 'confirm',
-  //   name: 'includeRequireJS',
-  //   message: 'Would you like to include RequireJS (for AMD support)?',
-  //   default: true
-  // },
   {
     type: 'confirm',
     name: 'autoprefixer',
@@ -67,8 +61,6 @@ AppGenerator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    // manually deal with the response, get back and store the results.
-    // we change a bit this way of doing to automatically do this in the self.prompt() method.
     this.compassBootstrap = props.compassBootstrap;
     this.includeRequireJS = false;//props.includeRequireJS;
     this.autoprefixer = props.autoprefixer;
@@ -79,11 +71,7 @@ AppGenerator.prototype.askFor = function askFor() {
     cb();
   }.bind(this));
 };
-
-AppGenerator.prototype.gruntfile = function gruntfile() {
-  this.template('Gruntfile.coffee');
-};
-
+/*
 AppGenerator.prototype.webDavConfig = function webDavConfig(){
   this.template('_webdavconf.json','.webdavconf.json');
 }
@@ -141,7 +129,7 @@ AppGenerator.prototype.jadeFiles = function jadeFiles() {
   this.template('master.jade', 'app/jade/' + this.masterSlug + '.jade');
   this.template('layout.jade', 'app/jade/layout.jade');
 };
-
+*/
 // AppGenerator.prototype.writeIndex = function writeIndex() {
 //   // prepare default content text
 //   var defaults = ['HTML5 Boilerplate'];
@@ -241,9 +229,10 @@ AppGenerator.prototype.app = function app() {
   this.mkdir('app/styles');
   this.mkdir('app/images');
   this.mkdir('app/jade');
- // this.write('app/jade/' + this.masterSlug +'.jade', this.masterFile);
-  this.write('app/scripts/hello.coffee', this.mainCoffeeFile);
-  if (!this.includeRequireJS) {
-    this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-  }
+  this.copy('gitignore', '.gitignore');
+  this.template('_webdavconf.json','.webdavconf.json');
+  this.template('Gruntfile.coffee', 'Gruntfile.coffee');
+  //if (!this.includeRequireJS) {
+  //  this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
+  //}
 };
