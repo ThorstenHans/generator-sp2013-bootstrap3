@@ -371,8 +371,8 @@ module.exports = (grunt) ->
         'htmlmin'
       ]
 
-    grunt.registerTask 'server', (target) ->
-      return grunt.task.run ['build', 'preview', 'connect:dist:keepalive'] if target === 'dist'
+    grunt.registerTask 'serve', (target) ->
+      return grunt.task.run ['build', 'preview', 'connect:dist:keepalive'] if target is 'dist'
       grunt.task.run [
         'clean:server'
         'concurrent:server'

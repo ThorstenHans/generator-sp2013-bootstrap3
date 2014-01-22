@@ -18,10 +18,7 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
 
   // resolved to mocha by default (could be switched to jasmine for instance)
   this.hookFor('test-framework', { as: 'app' });
-
-  //this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
-  this.mainCoffeeFile = 'console.log "\'Allo from CoffeeScript!"';
-
+  
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
@@ -71,157 +68,6 @@ AppGenerator.prototype.askFor = function askFor() {
     cb();
   }.bind(this));
 };
-/*
-AppGenerator.prototype.webDavConfig = function webDavConfig(){
-  this.template('_webdavconf.json','.webdavconf.json');
-}
-
-AppGenerator.prototype.packageJSON = function packageJSON() {
-  this.template('_package.json', 'package.json');
-};
-
-AppGenerator.prototype.git = function git() {
-  this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
-};
-
-AppGenerator.prototype.bower = function bower() {
-  this.copy('bowerrc', '.bowerrc');
-  this.copy('_bower.json', 'bower.json');
-};
-
-AppGenerator.prototype.jshint = function jshint() {
-  this.copy('jshintrc', '.jshintrc');
-};
-
-AppGenerator.prototype.editorConfig = function editorConfig() {
-  this.copy('editorconfig', '.editorconfig');
-};
-
-AppGenerator.prototype.h5bp = function h5bp() {
-  this.copy('favicon.ico', 'app/images/favicon.ico');
-};
-
-AppGenerator.prototype.bootstrapImg = function bootstrapImg() {
-  if (this.compassBootstrap) {
-    this.copy('glyphicons-halflings.png', 'app/images/glyphicons-halflings.png');
-    this.copy('glyphicons-halflings-white.png', 'app/images/glyphicons-halflings-white.png');
-  }
-  this.copy('ei_logo.png', 'app/images/ei_logo.png');
-};
-
-AppGenerator.prototype.bootstrapJs = function bootstrapJs() {
-  // TODO: create a Bower component for this
-  if (this.compassBootstrap) {
-    this.copy('bootstrap.js', 'app/scripts/vendor/bootstrap.js');
-  }
-};
-
-AppGenerator.prototype.mainStylesheet = function mainStylesheet() {
-  if (this.compassBootstrap) {
-    this.copy('main.scss', 'app/styles/main.scss');
-  } else {
-    this.copy('main.css', 'app/styles/main.css');
-  }
-};
-
-AppGenerator.prototype.jadeFiles = function jadeFiles() {
-  this.template('master.jade', 'app/jade/' + this.masterSlug + '.jade');
-  this.template('layout.jade', 'app/jade/layout.jade');
-};
-*/
-// AppGenerator.prototype.writeIndex = function writeIndex() {
-//   // prepare default content text
-//   var defaults = ['HTML5 Boilerplate'];
-//   var contentText = [
-//     '        <div class="container">',
-//     '            <div class="hero-unit">',
-//     '                <h1>\'Allo, \'Allo!</h1>',
-//     '                <p>You now have</p>',
-//     '                <ul>'
-//   ];
-//
-//   if (!this.includeRequireJS) {
-//     this.indexFile = this.appendScripts(this.indexFile, 'scripts/main.js', [
-//       'bower_components/jquery/jquery.js',
-//       'scripts/main.js'
-//     ]);
-//
-//     this.indexFile = this.appendFiles({
-//       html: this.indexFile,
-//       fileType: 'js',
-//       optimizedPath: 'scripts/coffee.js',
-//       sourceFileList: ['scripts/hello.js'],
-//       searchPath: '.tmp'
-//     });
-//   }
-//
-//   if (this.compassBootstrap) {
-//     defaults.push('Twitter Bootstrap');
-//   }
-//
-//   if (this.compassBootstrap && !this.includeRequireJS) {
-//     // wire Twitter Bootstrap plugins
-//     this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-//       'bower_components/sass-bootstrap/js/bootstrap-affix.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-alert.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-dropdown.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-tooltip.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-modal.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-transition.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-button.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-popover.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-typeahead.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-carousel.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-scrollspy.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-collapse.js',
-//       'bower_components/sass-bootstrap/js/bootstrap-tab.js'
-//     ]);
-//   }
-//
-//   if (this.includeRequireJS) {
-//     defaults.push('RequireJS');
-//   }
-//
-//   // iterate over defaults and create content string
-//   defaults.forEach(function (el) {
-//     contentText.push('                    <li>' + el  +'</li>');
-//   });
-//
-//   contentText = contentText.concat([
-//     '                </ul>',
-//     '                <p>installed.</p>',
-//     '                <h3>Enjoy coding! - Yeoman</h3>',
-//     '            </div>',
-//     '        </div>',
-//     ''
-//   ]);
-//
-//   // append the default content
-//   this.indexFile = this.indexFile.replace('<body>', '<body>\n' + contentText.join('\n'));
-// };
-
-// TODO(mklabs): to be put in a subgenerator like rjs:app
-// AppGenerator.prototype.requirejs = function requirejs() {
-//   if (!this.includeRequireJS) {
-//     return;
-//   }
-//
-//   this.indexFile = this.appendScripts(this.indexFile, 'scripts/main.js', ['bower_components/requirejs/require.js'], {
-//     'data-main': 'scripts/main'
-//   });
-//
-//   // add a basic amd module
-//   this.write('app/scripts/app.js', [
-//     '/*global define */',
-//     'define([], function () {',
-//     '    \'use strict\';\n',
-//     '    return \'\\\'Allo \\\'Allo!\';',
-//     '});'
-//   ].join('\n'));
-//
-//   this.template('require_main.js', 'app/scripts/main.js');
-// };
 
 AppGenerator.prototype.app = function app() {
   this.mkdir('app');
@@ -230,9 +76,43 @@ AppGenerator.prototype.app = function app() {
   this.mkdir('app/images');
   this.mkdir('app/jade');
   this.copy('gitignore', '.gitignore');
+  this.copy('gitattributes', '.gitattributes');
+  this.copy('bowerrc', '.bowerrc');
+  this.copy('_bower.json', 'bower.json');
+  this.copy('jshintrc', '.jshintrc');
+  this.copy('editorconfig', '.editorconfig');
+  this.copy('favicon.ico', 'app/images/favicon.ico');
+  if (this.compassBootstrap) {
+    this.copy('glyphicons-halflings.png', 'app/images/glyphicons-halflings.png');
+    this.copy('glyphicons-halflings-white.png', 'app/images/glyphicons-halflings-white.png');
+  }
+  if (this.compassBootstrap) {
+    this.copy('bootstrap.js', 'app/scripts/vendor/bootstrap.js');
+  }
+  if (this.compassBootstrap) {
+    this.copy('main.scss', 'app/styles/main.scss');
+  } else {
+    this.copy('main.css', 'app/styles/main.css');
+  }
+  this.copy('ei_logo.png', 'app/images/ei_logo.png');
+  
   this.template('_webdavconf.json','.webdavconf.json');
   this.template('Gruntfile.coffee', 'Gruntfile.coffee');
-  //if (!this.includeRequireJS) {
-  //  this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-  //}
+  this.template('_package.json', 'package.json');
+  this.template('master.jade', 'app/jade/' + this.masterSlug + '.jade');
+  this.template('layout.jade', 'app/jade/layout.jade');
 };
+
+AppGenerator.prototype.install = function () {
+  if (this.options['skip-install']) {
+    return;
+  }
+
+  var done = this.async();
+  this.installDependencies({
+    skipMessage: this.options['skip-install-message'],
+    skipInstall: this.options['skip-install'],
+    callback: done
+  });
+};
+
