@@ -31,7 +31,7 @@
     "nconf": "latest"
   },
   "peerDependencies": {
-    "generator-mocha": "latest"
+    "generator-mocha": "*"
   },
   "devDependencies": {
     "mocha": "latest",
